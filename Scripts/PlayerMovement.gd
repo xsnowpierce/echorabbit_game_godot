@@ -28,5 +28,3 @@ func get_movement_amount() -> Vector2:
 	if(Input.is_action_pressed("move_up")):
 		movement.y -= 1
 	return movement
-	
-	
