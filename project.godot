@@ -11,23 +11,29 @@ config_version=5
 [application]
 
 config/name="echorabbit"
-run/main_scene="res://node_2d.tscn"
+run/main_scene="res://Scenes/node_2d.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 boot_splash/show_image=false
 boot_splash/fullsize=false
 boot_splash/use_filter=false
-config/icon="res://icon.svg"
+config/icon="res://Images/character.png"
 
 [display]
 
 window/size/viewport_width=144
 window/size/viewport_height=160
 window/stretch/mode="viewport"
-window/stretch/aspect="keep_height"
+window/stretch/aspect="expand"
+window/stretch/scale_mode="integer"
+window/vsync/vsync_mode=0
 
 [dotnet]
 
 project/assembly_name="New Game Project"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/abfi/plugin.cfg")
 
 [input]
 
@@ -36,7 +42,6 @@ move_up={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":87,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194320,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":11,"pressure":0.0,"pressed":true,"script":null)
-, Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":1,"axis_value":-1.0,"script":null)
 ]
 }
 move_down={
@@ -64,10 +69,16 @@ move_left={
 ]
 }
 
+[physics]
+
+2d/default_gravity=0.0
+2d/default_gravity_vector=Vector2(0, 0)
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
 textures/canvas_textures/default_texture_repeat=2
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+anti_aliasing/screen_space_roughness_limiter/enabled=false
 environment/defaults/default_clear_color=Color(0, 0, 0, 1)

@@ -4,9 +4,8 @@ signal player_moved(velocity: Vector2)
 signal player_ismoving(value : bool)
 @export var speed: int = 55
 
-func get_input():
+func get_input() -> void:
 	var input_direction : Vector2 = get_movement_amount()
-	print(input_direction)
 	velocity = input_direction * speed
 	if(input_direction.length() > 0):
 		player_moved.emit(input_direction)
@@ -14,13 +13,9 @@ func get_input():
 	else: 
 		player_ismoving.emit(false)
 
-func _physics_process(_delta):
+func _process(_delta : float) -> void:
 	get_input()
 	move_and_slide()
-
-
-func _on_player_player_ismoving(value: bool) -> void:
-	pass # Replace with function body.
 
 func get_movement_amount() -> Vector2:
 	var movement : Vector2

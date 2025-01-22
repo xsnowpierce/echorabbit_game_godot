@@ -1,0 +1,17 @@
+[remap]
+
+importer="dt.abfi"
+type="FontFile"
+uid="uid://cwr4dra80hhw1"
+path="res://.godot/imported/font-Sheet.png-3e374abf16fa770df6c89ba76d62bfb4.fontdata"
+
+[deps]
+
+source_file="res://Images/font-Sheet.png"
+dest_files=["res://.godot/imported/font-Sheet.png-3e374abf16fa770df6c89ba76d62bfb4.fontdata"]
+
+[params]
+
+ranges=PackedStringArray("A-Z", "a-z", "0-9")
+letter_spacing=0
+mipmaps=false
