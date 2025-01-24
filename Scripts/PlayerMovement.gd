@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 signal player_moved(velocity: Vector2)
 signal player_ismoving(value : bool)
+signal interact_pressed
+
 @export var speed: int = 55
 
 func get_input() -> void:
@@ -16,6 +18,7 @@ func get_input() -> void:
 func _process(_delta : float) -> void:
 	get_input()
 	move_and_slide()
+	input_interact()
 
 func get_movement_amount() -> Vector2:
 	var movement : Vector2
@@ -28,3 +31,7 @@ func get_movement_amount() -> Vector2:
 	if(Input.is_action_pressed("move_up")):
 		movement.y -= 1
 	return movement
+
+func input_interact() -> void:
+	if(Input.is_action_just_pressed("interact")):
+		interact_pressed.emit()

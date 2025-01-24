@@ -1,9 +1,9 @@
-extends Node2D
+extends "Interactable.gd"
 
-@export var text : String
+@export var text : Dialogue
 
-signal text_box_event(text : String)
+signal text_box_event(text : Dialogue)
 
 
-func _on_body_entered(body: Node2D) -> void:
-	text_box_event.emit(text)
+func interact() -> void:
+	DialogueSystem.push_dialogue(text)

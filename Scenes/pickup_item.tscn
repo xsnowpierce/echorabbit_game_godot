@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://b8wu7mpyhe1k6"]
+
+[ext_resource type="Script" path="res://Scripts/item_obtain.gd" id="1_yxjvs"]
+[ext_resource type="Texture2D" uid="uid://b8t6se6owgyxe" path="res://Images/items.png" id="2_7w11j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nk265"]
+size = Vector2(16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wkvjs"]
+atlas = ExtResource("2_7w11j")
+region = Rect2(16, 0, 16, 16)
+
+[node name="PickupItem" type="StaticBody2D" groups=["Interactable"]]
+script = ExtResource("1_yxjvs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Interactable"]]
+position = Vector2(8, 8)
+shape = SubResource("RectangleShape2D_nk265")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_wkvjs")
+centered = false

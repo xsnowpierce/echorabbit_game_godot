@@ -18,12 +18,16 @@ boot_splash/fullsize=false
 boot_splash/use_filter=false
 config/icon="res://Images/character.png"
 
+[autoload]
+
+PlayerInventory="*res://Scripts/player_inventory.gd"
+DialogueSystem="*res://Scripts/DialogueSystem.gd"
+
 [display]
 
 window/size/viewport_width=144
 window/size/viewport_height=160
 window/stretch/mode="viewport"
-window/stretch/aspect="expand"
 window/stretch/scale_mode="integer"
 window/vsync/vsync_mode=0
 
@@ -39,6 +43,10 @@ version_control/autoload_on_startup=true
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/abfi/plugin.cfg")
+
+[global_group]
+
+Interactable="Something that the player can interact with."
 
 [input]
 
@@ -71,6 +79,12 @@ move_left={
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194319,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":13,"pressure":0.0,"pressed":true,"script":null)
 , Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":0,"axis_value":-1.0,"script":null)
+]
+}
+interact={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":32,"key_label":0,"unicode":32,"location":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":1,"pressure":0.0,"pressed":false,"script":null)
 ]
 }
 
