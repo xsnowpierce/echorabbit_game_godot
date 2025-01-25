@@ -9,7 +9,7 @@ func add_item(item : InvItem, amount : int) -> void:
 	inventory_dictionary[item] = amount
 	var dialogue : Dialogue = Dialogue.new()
 	var line : String = "You picked up " + str(amount) + " " + item.name + "."
-	dialogue.text.append(line)
+	dialogue.conversation.append(line)
 	DialogueSystem.push_dialogue(dialogue)
 	pass
 	

@@ -7,13 +7,18 @@ signal interact_pressed
 @export var speed: int = 55
 
 func get_input() -> void:
-	var input_direction : Vector2 = get_movement_amount()
-	velocity = input_direction * speed
-	if(input_direction.length() > 0):
-		player_moved.emit(input_direction)
-		player_ismoving.emit(true)
-	else: 
+	if(PauseGameSystem.pause_reasons > 0):
+		velocity = Vector2(0, 0)
 		player_ismoving.emit(false)
+		return
+	else:
+		var input_direction : Vector2 = get_movement_amount()
+		velocity = input_direction * speed
+		if(input_direction.length() > 0):
+			player_moved.emit(input_direction)
+			player_ismoving.emit(true)
+		else: 
+			player_ismoving.emit(false)
 
 func _process(_delta : float) -> void:
 	get_input()
@@ -33,5 +38,7 @@ func get_movement_amount() -> Vector2:
 	return movement
 
 func input_interact() -> void:
+	if(PauseGameSystem.has_pause_reason()):
+		return
 	if(Input.is_action_just_pressed("interact")):
 		interact_pressed.emit()

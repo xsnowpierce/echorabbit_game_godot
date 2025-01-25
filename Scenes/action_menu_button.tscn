@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://b5kbykdypeqcw"]
+
+[ext_resource type="Texture2D" uid="uid://bg4q5a1d572kw" path="res://Images/ui_sprites.png" id="1_xpk6v"]
+[ext_resource type="Script" path="res://Scripts/action_menu_button.gd" id="2_komag"]
+[ext_resource type="LabelSettings" uid="uid://be22n1cnnfyp5" path="res://new_label_settings.tres" id="3_yq2im"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wwgax"]
+atlas = ExtResource("1_xpk6v")
+region = Rect2(16, 0, 64, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c5b2q"]
+atlas = ExtResource("1_xpk6v")
+region = Rect2(16, 16, 64, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6dfe0"]
+atlas = ExtResource("1_xpk6v")
+region = Rect2(16, 0, 64, 16)
+
+[node name="ActionMenuButton" type="TextureRect"]
+size_flags_horizontal = 3
+texture = SubResource("AtlasTexture_wwgax")
+script = ExtResource("2_komag")
+selected_texture = SubResource("AtlasTexture_c5b2q")
+deselected_texture = SubResource("AtlasTexture_6dfe0")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "bump"
+label_settings = ExtResource("3_yq2im")
+horizontal_alignment = 1
+vertical_alignment = 1

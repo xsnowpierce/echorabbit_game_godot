@@ -1,0 +1,67 @@
+[gd_scene load_steps=6 format=3 uid="uid://dmqqkl3hbq1yt"]
+
+[ext_resource type="Script" path="res://Scripts/TextBox.gd" id="1_gvv0k"]
+[ext_resource type="Script" path="res://Scripts/DisplayTextBox.gd" id="2_8p312"]
+[ext_resource type="Texture2D" uid="uid://bg4q5a1d572kw" path="res://Images/ui_sprites.png" id="3_2r2qp"]
+[ext_resource type="Script" path="res://Scripts/text_progress_indicator.gd" id="4_j1e22"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hur4l"]
+atlas = ExtResource("3_2r2qp")
+region = Rect2(0, 0, 16, 16)
+
+[node name="TextBox" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gvv0k")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -72.0
+offset_top = -48.0
+offset_right = 72.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Text" type="RichTextLabel" parent="Background"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 144.0
+offset_bottom = 48.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "hi"
+scroll_active = false
+shortcut_keys_enabled = false
+meta_underlined = false
+hint_underlined = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+visible_characters_behavior = 1
+script = ExtResource("2_8p312")
+
+[node name="Progress Indicator" type="TextureRect" parent="Background"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = -16.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = SubResource("AtlasTexture_hur4l")
+script = ExtResource("4_j1e22")
+
+[connection signal="dialogue_displayed" from="." to="Background/Text" method="_on_text_box_dialogue_displayed"]
+[connection signal="can_progress_dialogue" from="Background/Text" to="Background/Progress Indicator" method="_on_text_can_progress_dialogue"]
+[connection signal="text_complete" from="Background/Text" to="." method="_on_rich_text_label_text_complete"]
