@@ -8,6 +8,8 @@ var menu_is_open : bool = false
 
 var selected_button : int = 0
 
+signal context_interact_pushed(context : InteractContext.Context)
+
 func _ready() -> void:
 	visible = false
 
@@ -25,6 +27,8 @@ func _process(delta: float) -> void:
 		menu_cancel()
 	
 func toggle_menu() -> void:
+	if(!menu_is_open and PauseGameSystem.has_pause_reason()):
+		return
 	if(menu_is_open):
 		close_menu()
 	else:
@@ -41,7 +45,7 @@ func menu_movement() -> void:
 
 func menu_accept() -> void:
 	if(menu_is_open):
-		print("button ", str(selected_button), " pressed.")
+		EventSystem.push_context_event(selected_button)
 		close_menu()
 
 func menu_cancel() -> void:
@@ -66,14 +70,17 @@ func create_buttons() -> void:
 		var created_button = button_scene.instantiate()
 		button_parent.add_child(created_button)
 		buttons.append(created_button)
+		created_button.set_button_text("spit")
 	if(PlayerFlags.has_second_button):
 		var created_button = button_scene.instantiate()
 		button_parent.add_child(created_button)
 		buttons.append(created_button)
+		created_button.set_button_text("punch")
 	if(PlayerFlags.has_third_button):
 		var created_button = button_scene.instantiate()
 		button_parent.add_child(created_button)
 		buttons.append(created_button)
+		created_button.set_button_text("sniff")
 	
 func destroy_buttons() -> void:
 	if(buttons.is_empty()):

@@ -17,3 +17,5 @@ func set_selected(value : bool) -> void:
 	else:
 		texture = deselected_texture
 	
+func set_button_text(value : String) -> void:
+	get_node("Label").text = value

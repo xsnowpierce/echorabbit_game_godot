@@ -24,6 +24,8 @@ PauseGameSystem="*res://Scripts/PauseGameSystem.gd"
 PlayerInventory="*res://Scripts/player_inventory.gd"
 DialogueSystem="*res://Scripts/DialogueSystem.gd"
 PlayerFlags="*res://Scripts/PlayerFlags.gd"
+InteractContext="*res://Scripts/InteractContext.gd"
+EventSystem="*res://Scripts/EventSystem.gd"
 
 [display]
 

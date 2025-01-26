@@ -51,6 +51,7 @@ parameters/looping = true
 visible = false
 
 [node name="Action Menu" type="Control" parent="UI" node_paths=PackedStringArray("button_parent")]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -104,4 +105,5 @@ held_item = ExtResource("9_lclvj")
 position = Vector2(288, -160)
 held_item = ExtResource("9_lclvj")
 
+[connection signal="context_interact_pushed" from="UI/Action Menu" to="Player" method="_on_action_menu_context_interact_pushed"]
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
