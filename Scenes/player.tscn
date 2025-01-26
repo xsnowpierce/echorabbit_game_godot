@@ -1,7 +1,8 @@
-[gd_scene load_steps=25 format=3 uid="uid://dmeaa5esn0mpt"]
+[gd_scene load_steps=30 format=3 uid="uid://dmeaa5esn0mpt"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerMovement.gd" id="1_cwohf"]
 [ext_resource type="Texture2D" uid="uid://cjcrcbtqa56wr" path="res://Images/character.png" id="2_l6qt5"]
+[ext_resource type="Script" path="res://Scripts/PlayerCombat.gd" id="2_w6x2h"]
 [ext_resource type="Script" path="res://Scripts/PlayerAnimator.gd" id="3_ccmpw"]
 [ext_resource type="Script" path="res://Scripts/PlayerInteract.gd" id="4_vi1cv"]
 [ext_resource type="Script" path="res://Scripts/PlayerInteractBoxMove.gd" id="5_383ch"]
@@ -21,6 +22,22 @@ region = Rect2(32, 0, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_u0flu"]
 atlas = ExtResource("2_l6qt5")
 region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0cmab"]
+atlas = ExtResource("2_l6qt5")
+region = Rect2(0, 64, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0y6ow"]
+atlas = ExtResource("2_l6qt5")
+region = Rect2(32, 80, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7n7mb"]
+atlas = ExtResource("2_l6qt5")
+region = Rect2(32, 64, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5edea"]
+atlas = ExtResource("2_l6qt5")
+region = Rect2(16, 64, 16, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ax10t"]
 atlas = ExtResource("2_l6qt5")
@@ -91,6 +108,38 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_0cmab")
+}],
+"loop": true,
+"name": &"kick_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0y6ow")
+}],
+"loop": true,
+"name": &"kick_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7n7mb")
+}],
+"loop": true,
+"name": &"kick_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5edea")
+}],
+"loop": true,
+"name": &"kick_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_ax10t")
 }, {
 "duration": 1.0,
@@ -147,29 +196,35 @@ radius = 7.9
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nesxw"]
 size = Vector2(10, 10)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("player_combat") groups=["Player"]]
 up_direction = Vector2(0, 1)
 safe_margin = 0.001
 script = ExtResource("1_cwohf")
+player_combat = NodePath("Combat")
 
-[node name="Sprite" type="AnimatedSprite2D" parent="."]
+[node name="Combat" type="Node2D" parent="." node_paths=PackedStringArray("player_animator", "player_movement") groups=["Player"]]
+script = ExtResource("2_w6x2h")
+player_animator = NodePath("../Sprite")
+player_movement = NodePath("..")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." groups=["Player"]]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_hnpxw")
 animation = &"down"
 centered = false
 script = ExtResource("3_ccmpw")
 
-[node name="Collision Box" type="CollisionShape2D" parent="."]
+[node name="Collision Box" type="CollisionShape2D" parent="." groups=["Player"]]
 position = Vector2(8, 8)
 shape = SubResource("CircleShape2D_v4y0r")
 one_way_collision_margin = 0.0
 
-[node name="Interacting" type="Node2D" parent="."]
+[node name="Interacting" type="Node2D" parent="." groups=["Player"]]
 script = ExtResource("4_vi1cv")
 
-[node name="Interact Area" type="Area2D" parent="Interacting"]
+[node name="Interact Area" type="Area2D" parent="Interacting" groups=["Player"]]
 
-[node name="Interact Shape" type="CollisionShape2D" parent="Interacting/Interact Area"]
+[node name="Interact Shape" type="CollisionShape2D" parent="Interacting/Interact Area" groups=["Player"]]
 position = Vector2(8, -6)
 shape = SubResource("RectangleShape2D_nesxw")
 debug_color = Color(0.962807, 3.85046e-07, 0.502426, 0.42)

@@ -1,9 +1,12 @@
 extends Node2D
 
+class_name PlayerInteract
+
 var last_move_direction : Vector2
 var interact_array : Array[Node2D]
 
 func _ready() -> void:
+	PlayerInput.player_interact = self
 	EventSystem.context_event.connect(context_interact_pushed.bind())
 
 func _on_interact_entered(body: Node2D) -> void:

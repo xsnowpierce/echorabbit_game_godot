@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://bi20ru5lb33ji"]
+
+[ext_resource type="Script" path="res://Scripts/CarrotProjectile.gd" id="1_jd73x"]
+[ext_resource type="Texture2D" uid="uid://b8t6se6owgyxe" path="res://Images/items.png" id="2_i0ra0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j3gfs"]
+size = Vector2(8, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x7rec"]
+atlas = ExtResource("2_i0ra0")
+region = Rect2(16, 0, 16, 16)
+
+[node name="CarrotProjectile" type="Area2D" node_paths=PackedStringArray("rotate")]
+script = ExtResource("1_jd73x")
+rotate = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(8, 8)
+shape = SubResource("RectangleShape2D_j3gfs")
+
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
+texture = SubResource("AtlasTexture_x7rec")
+
+[connection signal="area_entered" from="." to="." method="on_collision_entered"]
+[connection signal="body_entered" from="." to="." method="on_collision_entered"]

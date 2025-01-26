@@ -1,13 +1,23 @@
 extends CharacterBody2D
 
+class_name PlayerMovement
+
+enum MoveDirection
+{
+	UP, DOWN, LEFT, RIGHT
+}
+
 signal player_moved(velocity: Vector2)
 signal player_ismoving(value : bool)
 signal interact_pressed
 
+@export var player_combat : PlayerCombat
+
 @export var speed: int = 55
+@export var attacking_slowdown : float = .5
 
 func get_input() -> void:
-	if(PauseGameSystem.pause_reasons > 0):
+	if(PauseGameSystem.pause_reasons > 0 or player_combat.is_attacking):
 		velocity = Vector2(0, 0)
 		player_ismoving.emit(false)
 		return

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/TestText.gd" id="1_qhodn"]
 [ext_resource type="Script" path="res://Scripts/Dialogue.gd" id="2_emigs"]
 [ext_resource type="Texture2D" uid="uid://cjcrcbtqa56wr" path="res://Images/character.png" id="3_ibgr5"]
-[ext_resource type="Script" path="res://Scenes/npc_sprite_animator.gd" id="4_mroqg"]
+[ext_resource type="Script" path="res://Scripts/npc_sprite_animator.gd" id="4_mroqg"]
 
 [sub_resource type="Resource" id="Resource_j0clk"]
 script = ExtResource("2_emigs")
