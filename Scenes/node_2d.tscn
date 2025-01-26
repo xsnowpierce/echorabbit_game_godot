@@ -1,27 +1,13 @@
-[gd_scene load_steps=15 format=4 uid="uid://c4vsxnhnrmgem"]
+[gd_scene load_steps=9 format=4 uid="uid://c4vsxnhnrmgem"]
 
-[ext_resource type="Texture2D" uid="uid://juujmwk5ex5e" path="res://Images/tiles.png" id="1_3kqs4"]
 [ext_resource type="TileSet" uid="uid://dlgpfkydsdyon" path="res://Images/tileset.tres" id="1_ls3xc"]
 [ext_resource type="PackedScene" uid="uid://dmeaa5esn0mpt" path="res://Scenes/player.tscn" id="2_e1jga"]
 [ext_resource type="AudioStream" uid="uid://bixv7qobwu1ml" path="res://Sounds/sfd.ogg" id="3_lf36f"]
 [ext_resource type="PackedScene" uid="uid://dmqqkl3hbq1yt" path="res://Scenes/text_box.tscn" id="4_j34i8"]
-[ext_resource type="Script" path="res://Scripts/action_menu.gd" id="5_kueoe"]
-[ext_resource type="PackedScene" uid="uid://b5kbykdypeqcw" path="res://Scenes/action_menu_button.tscn" id="6_1mqhh"]
-[ext_resource type="Script" path="res://Scripts/TestText.gd" id="6_htphf"]
-[ext_resource type="Script" path="res://Scripts/Dialogue.gd" id="7_060l6"]
+[ext_resource type="PackedScene" uid="uid://dnpn8brm4e0c" path="res://Scenes/action_menu.tscn" id="5_rcrov"]
+[ext_resource type="PackedScene" uid="uid://dkprclgc0mr3i" path="res://Scenes/test_npc.tscn" id="8_f3a66"]
 [ext_resource type="PackedScene" uid="uid://b8wu7mpyhe1k6" path="res://Scenes/pickup_item.tscn" id="8_mph88"]
 [ext_resource type="Resource" uid="uid://bxax8oc1xssbv" path="res://Items/test.tres" id="9_lclvj"]
-
-[sub_resource type="Resource" id="Resource_d2wob"]
-script = ExtResource("7_060l6")
-conversation = Array[String](["hello", "im john", "john bohn"])
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_llbo5"]
-size = Vector2(16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8f8aw"]
-atlas = ExtResource("1_3kqs4")
-region = Rect2(0, 0, 16, 16)
 
 [node name="Node" type="Node"]
 
@@ -50,48 +36,8 @@ parameters/looping = true
 [node name="Textbox" parent="UI" instance=ExtResource("4_j34i8")]
 visible = false
 
-[node name="Action Menu" type="Control" parent="UI" node_paths=PackedStringArray("button_parent")]
+[node name="Action Menu" parent="UI" instance=ExtResource("5_rcrov")]
 visible = false
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("5_kueoe")
-button_scene = ExtResource("6_1mqhh")
-button_parent = NodePath("ColorRect/VBoxContainer")
-
-[node name="ColorRect" type="ColorRect" parent="UI/Action Menu"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -64.0
-offset_bottom = 48.0
-grow_horizontal = 0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/Action Menu/ColorRect"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 0
-
-[node name="Area2D" type="Area2D" parent="." groups=["Interactable"]]
-position = Vector2(48, -96)
-script = ExtResource("6_htphf")
-text = SubResource("Resource_d2wob")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(8, 8)
-shape = SubResource("RectangleShape2D_llbo5")
-
-[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
-texture = SubResource("AtlasTexture_8f8aw")
-centered = false
 
 [node name="PickupItem" parent="." instance=ExtResource("8_mph88")]
 position = Vector2(224, -160)
@@ -105,5 +51,4 @@ held_item = ExtResource("9_lclvj")
 position = Vector2(288, -160)
 held_item = ExtResource("9_lclvj")
 
-[connection signal="context_interact_pushed" from="UI/Action Menu" to="Player" method="_on_action_menu_context_interact_pushed"]
-[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
+[node name="test_npc" parent="." instance=ExtResource("8_f3a66")]

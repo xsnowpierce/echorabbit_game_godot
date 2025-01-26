@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 var last_move_direction : Vector2
 var interact_array : Array[Node2D]
@@ -16,9 +16,17 @@ func _on_interact_exited(body: Node2D) -> void:
 func interact() -> void:
 	if(interact_array.size() > 0):
 		if(interact_array[0].has_method("interact")):
-			interact_array[0].interact()
+			var interact_info : InteractInfo = InteractInfo.new()
+			interact_info.set_info(self)
+			interact_array[0].interact(interact_info)
 
 func context_interact_pushed(context : InteractContext.Context) -> void:
 	if(interact_array.size() > 0):
 		if(interact_array[0].has_method("context_interact")):
-			interact_array[0].context_interact(context)
+			var interact_info : InteractInfo = InteractInfo.new()
+			interact_info.set_info(self)
+			interact_array[0].context_interact(interact_info, context)
+	else:
+		var dialogue : Dialogue = Dialogue.new()
+		dialogue.conversation = ["Nothing happened..."]
+		DialogueSystem.push_dialogue(dialogue)

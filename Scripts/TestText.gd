@@ -2,12 +2,14 @@ extends "Interactable.gd"
 
 @export var text : Dialogue
 
-signal text_box_event(text : Dialogue)
+signal has_interacted(interact_info : InteractInfo)
 
-func interact() -> void:
+func interact(interact_info : InteractInfo) -> void:
+	has_interacted.emit(interact_info)
 	DialogueSystem.push_dialogue(text)
 
-func context_interact(interact_context : InteractContext.Context) -> void:
+func context_interact(interact_info : InteractInfo, interact_context : InteractContext.Context) -> void:
+	has_interacted.emit(interact_info)
 	match(interact_context):
 		InteractContext.Context.SPIT:
 			var dialogue : Dialogue = Dialogue.new()

@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://dnpn8brm4e0c"]
+
+[ext_resource type="Script" path="res://Scripts/action_menu.gd" id="1_t1clk"]
+[ext_resource type="PackedScene" uid="uid://b5kbykdypeqcw" path="res://Scenes/action_menu_button.tscn" id="2_l402x"]
+
+[node name="Action Menu" type="Control" node_paths=PackedStringArray("button_parent")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_t1clk")
+button_scene = ExtResource("2_l402x")
+button_parent = NodePath("ColorRect/VBoxContainer")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -64.0
+offset_bottom = 48.0
+grow_horizontal = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
